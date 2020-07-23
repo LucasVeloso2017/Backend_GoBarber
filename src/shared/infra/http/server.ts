@@ -3,13 +3,12 @@ import express, { NextFunction,Request,Response } from 'express'
 import 'express-async-errors'
 import cors from 'cors'
 import routes from './routes'
-import uploadConfig from './config/upload'
 
+import uploadConfig from '@config/upload'
+import AppError from '@shared/errors/appError'
 
-
-import AppError from './errors/appError'
-
-import './database'
+import '@shared/infra/typeorm'
+import '@shared/container'
 
 const app = express()
 app.use(express.json())

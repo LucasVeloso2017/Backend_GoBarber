@@ -1,13 +1,13 @@
-import {getRepository} from 'typeorm'
 import { compare } from 'bcryptjs'
-import { sign, verify } from 'jsonwebtoken'
+import { sign } from 'jsonwebtoken'
+import { inject,injectable } from 'tsyringe';
 
-import AppError from '../errors/appError'
+import AppError from '@shared/errors/appError'
+import  IUserRepository  from '@modules/users/repositories/IUserRepository';
+import authConfig from '@config/config'
 
-import authConfig from '../config/config'
 
-
-import User from '../models/user'
+import User from '@modules/users/infra/typeorm/entities/user'
 
 interface Request{
     email:string,
@@ -18,14 +18,18 @@ interface Response{
     token:string
 }
 
+@injectable()
 class AuthUserService{
 
-    public async execute({email,password}:Request):Promise<Response>{
-        const usersRepository = getRepository(User)
+    constructor(
+        @inject("UsersRepository")
+        private usersRepository:IUserRepository
+    ){}
 
-        const user = await usersRepository.findOne({
-            where:{email}
-        })
+    public async execute({email,password}:Request):Promise<Response>{
+      
+
+        const user = await this.usersRepository.findByEmail(email)
 
         if(!user){
             throw new AppError('Incorrect Email/Password',401)

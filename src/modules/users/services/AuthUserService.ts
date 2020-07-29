@@ -4,6 +4,7 @@ import { inject,injectable } from 'tsyringe';
 
 import AppError from '@shared/errors/appError'
 import  IUserRepository  from '@modules/users/repositories/IUserRepository';
+import IHashProvider from '@shared/container/providers/hashProvider/models/IHashProvider'
 import authConfig from '@config/config'
 
 
@@ -23,7 +24,10 @@ class AuthUserService{
 
     constructor(
         @inject("UsersRepository")
-        private usersRepository:IUserRepository
+        private usersRepository:IUserRepository,
+        
+        @inject("HashProvider")
+        private hashProvider:IHashProvider,
     ){}
 
     public async execute({email,password}:Request):Promise<Response>{
@@ -35,7 +39,7 @@ class AuthUserService{
             throw new AppError('Incorrect Email/Password',401)
         }
 
-        const passwordMacthed = await compare(password, user.password)
+        const passwordMacthed = await this.hashProvider.compareHash(password, user.password)
 
         if(!passwordMacthed){
             throw new AppError('Incorrect Email/Password',401)

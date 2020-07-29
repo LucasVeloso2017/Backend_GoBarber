@@ -1,11 +1,11 @@
 import './providers'
 import { container } from 'tsyringe'
 
-import AppointmentsRepository  from '@modules/appointments/infra/typeorm/repositories/appointmentsRepositories';
+import  AppointmentsRepository  from '@modules/appointments/infra/typeorm/repositories/appointmentsRepositories';
 import  IAppointmentsRepository  from '@modules/appointments/repositories/IAppointmentsRepository';
 
 import  IUserRepository from '@modules/users/repositories/IUserRepository';
-import  UsersRepository  from '@modules/users/infra/typeorm/repositories/usersRepositoy';
+import  UsersRepository  from '@modules/users/infra/typeorm/repositories/usersRepository';
 
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository'
 

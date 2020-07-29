@@ -3,7 +3,7 @@ import multer from 'multer'
 import uploadConfig from '@config/upload'
 
 import ensureAuth from '@modules/users/infra/http/middlewares/ensureAuth'
-import UsersController from '@modules/users/infra/controllers/usersController'
+import UsersController from '@modules/users/infra/http/controllers/usersController'
 
 const usersController = new UsersController()
 

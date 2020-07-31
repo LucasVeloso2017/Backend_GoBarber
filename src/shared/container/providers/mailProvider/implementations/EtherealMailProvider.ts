@@ -1,10 +1,19 @@
-import nodemailer,{Transporter} from 'nodemailer'
-import ISendForgotEmailPassword from '@shared/container/providers/mailProvider/models/ISendForgotPasswordEmail'
+import {inject,injectable } from 'tsyringe'
 
+import nodemailer,{Transporter} from 'nodemailer'
+import ISendForgotEmailPassword from '@shared/container/providers/mailProvider/models/IMailProvider'
+import dtoISendeMail from '../dto/dtoISendMail'
+import IMailTemplateProvider from '@shared/container/providers/mailTemplateProvider/models/IMailTemplateProvider'
+
+@injectable()
 export default class EtherealMailProvider implements ISendForgotEmailPassword {
     private client:Transporter
     
-    constructor(){
+    constructor(
+
+        @inject('MailTemplateProvider')
+        private mailTemplateProvider:IMailTemplateProvider
+    ){
         nodemailer.createTestAccount().then(acount=>{
             const transporter = nodemailer.createTransport({
                 host:acount.smtp.host,
@@ -21,13 +30,18 @@ export default class EtherealMailProvider implements ISendForgotEmailPassword {
     }
 
 
-    public async sendMail(to:string,body:string):Promise<void>{
+    public async sendMail({to,from,subject,templateData}:dtoISendeMail):Promise<void>{
         await this.client.sendMail({
-           from:'Equipre GoBarber <equipegobarber@gobarber.com.br>',
-           to,
-           subject:'Recuperação de Senha',
-           text:body,
-           //html:'' 
+            from:{
+                name:from?.name || 'Equipe Gobarber equipegobarber@gobarber.com.br',
+                address:from?.name || 'equipegobarber@gobarber.com.br'
+            },
+            to:{
+                name:to.name,
+                address:to.email
+            },
+            subject,
+            html: await this.mailTemplateProvider.parse(templateData)
         })
     }
 

@@ -3,7 +3,7 @@ import { isAfter, addHours} from 'date-fns'
 
 import AppError from '@shared/errors/appError'
 import  IUserRepository  from '@modules/users/repositories/IUserRepository';
-import ISendForgotPasswordMail from '@shared/container/providers/mailProvider/models/ISendForgotPasswordEmail'
+import ISendForgotPasswordMail from '@shared/container/providers/mailProvider/models/IMailProvider'
 import IUserTokensRepository from '@modules/users/repositories/IUserTokensRepository'
 import IHashProvider from '@shared/container/providers/hashProvider/models/IHashProvider'
 import User from '@modules/users/infra/typeorm/entities/user'

@@ -5,7 +5,7 @@ import AuthUserService from '@modules/users/services/AuthUserService'
 
 class sessionController{
 
-    public async create(request:Request,response:Response){
+    public async create(request:Request,response:Response):Promise<Response>{
         const{email,password}= request.body
  
         const authenticateUser = container.resolve(AuthUserService)

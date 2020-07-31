@@ -7,7 +7,7 @@ import UpdateUserAvatarService from '@modules/users/services/UpdateUserAvatarSer
 
 class UsersController{
 
-    public async create(request:Request,response:Response){
+    public async create(request:Request,response:Response):Promise<Response>{
         const{ name,email,password }=request.body
 
         const createUser = container.resolve(CreateUserService)
@@ -21,7 +21,7 @@ class UsersController{
         return response.json(user)
     }
 
-    public async store(request:Request,response:Response){
+    public async store(request:Request,response:Response):Promise<Response>{
         const updateUserAvatar = container.resolve(UpdateUserAvatarService)
 
         const user = await updateUserAvatar.execute({

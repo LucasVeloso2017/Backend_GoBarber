@@ -1,6 +1,6 @@
 import User from '@modules/users/infra/typeorm/entities/user'
 import ICreateUserDto from '@modules/users/dtos/ICreateUserDto'
-
+import IFindAllProviderDto from '@modules/users/dtos/IFindAllProviderDto'
 
 export default interface IUserRepository{
 
@@ -8,4 +8,6 @@ export default interface IUserRepository{
     findByEmail(email:string):Promise<User | undefined>
     create(data:ICreateUserDto):Promise<User>
     save(user:User):Promise<User>
+    findAllProviders(data:IFindAllProviderDto):Promise<User[]>
+
 }

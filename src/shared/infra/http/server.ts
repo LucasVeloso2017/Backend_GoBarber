@@ -2,6 +2,7 @@ import 'reflect-metadata'
 import express, { NextFunction,Request,Response } from 'express'
 import 'express-async-errors'
 import cors from 'cors'
+import { errors } from 'celebrate'
 import routes from './routes'
 
 import uploadConfig from '@config/upload'
@@ -17,7 +18,7 @@ app.use('/files',express.static(uploadConfig.uploadsFolder))
 
 app.use(routes)
 
-
+app.use(errors())
 app.use((err:Error, request:Request,  response:Response, next:NextFunction)=>{
     if(err instanceof AppError){
         response.status(err.statusCode).json({

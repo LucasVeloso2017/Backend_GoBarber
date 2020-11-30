@@ -13,9 +13,16 @@ import HashProvider from '@shared/container/providers/hashProvider/implementatio
 import IMailTemplateProvider from '@shared/container/providers/mailTemplateProvider/models/IMailTemplateProvider'
 import HandlebarsMailTemplateProvider from '@shared/container/providers/mailTemplateProvider/implementations/handlebarsMailTemplateProvider'
 
+import ICacheProvider from './cacheProvider/models/ICacheProvider';
+import RedisCacheProvider from './cacheProvider/implementations/RedisCacheProvider';
+
 
 container.registerSingleton<IStorageProvider>(
     'StorageProvider',DiskStorageProvider
+)
+
+container.registerSingleton<ICacheProvider>(
+    'CacheProvider',RedisCacheProvider
 )
 
 container.registerSingleton<IHashProvider>(

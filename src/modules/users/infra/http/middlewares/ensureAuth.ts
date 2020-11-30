@@ -24,7 +24,7 @@ export default function ensureAuth(request:Request,response:Response,next:NextFu
 
     try{
 
-        const decoded = verify(token,authConfig.jwt.secret)
+        const decoded =verify(token,authConfig.jwt.secret)
 
         const{ sub } = decoded as tokenPayload
 

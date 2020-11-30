@@ -7,13 +7,16 @@ import uploadConfig from '@config/upload'
 
 import ensureAuth from '@modules/users/infra/http/middlewares/ensureAuth'
 import UsersController from '@modules/users/infra/http/controllers/usersController'
+import UserAvatarController from '@modules/users/infra/http/controllers/userAvatarController'
+
 
 const usersController = new UsersController()
+const userAvatarController = new UserAvatarController()
 
 const usersRouter = Router()
 const upload = multer(uploadConfig)
 
-usersRouter.patch('/avatar',ensureAuth,upload.single('avatar'),usersController.store)
+usersRouter.patch('/avatar',ensureAuth,upload.single('avatar'),userAvatarController.update)
 usersRouter.post('/',celebrate({
     [Segments.BODY]:{
         name:Joi.string().required(),

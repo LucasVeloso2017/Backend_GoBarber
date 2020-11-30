@@ -1,6 +1,7 @@
 export default {
     jwt:{
-        secret:'GobarberTokenSecret',
+        secret:String(process.env.APP_SECRET),
+        //secret:"asdasdasdasd",
         expiresIn:'1d'
     }
 }

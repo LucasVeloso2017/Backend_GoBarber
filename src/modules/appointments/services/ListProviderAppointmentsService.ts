@@ -3,6 +3,7 @@ import { inject,injectable } from 'tsyringe';
 
 import  IAppointmentsRepository  from '@modules/appointments/repositories/IAppointmentsRepository';
 import Appointment from './../infra/typeorm/entities/appointment';
+import ICacheProvider from '@shared/container/providers/cacheProvider/models/ICacheProvider';
 
 interface Request{
     provider_id:string
@@ -17,7 +18,10 @@ class ListProviderAppointmentsService{
 
     constructor(
         @inject("AppointmentsRepository")
-        private appoitmentsRepository:IAppointmentsRepository
+        private appoitmentsRepository:IAppointmentsRepository,
+
+        @inject("CacheProvider")
+        private cacheProvider:ICacheProvider,
 
     ){}
     
@@ -25,7 +29,6 @@ class ListProviderAppointmentsService{
         const appointments = await this.appoitmentsRepository.findAllInDayFromProvider({
             provider_id,day,month,year
         })
-
         return appointments
     }
 }

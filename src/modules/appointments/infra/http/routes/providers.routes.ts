@@ -1,9 +1,9 @@
 import {Router} from 'express'
 
 import ensureAuth from '@modules/users/infra/http/middlewares/ensureAuth'
-import ProvidersController from '@modules/appointments/infra/controllers/providersController'
-import DayAvailableController from '@modules/appointments/infra/controllers/monthAvailableController'
-import MonthAvailableController from '@modules/appointments/infra/controllers/dayAvailableController'
+import ProvidersController from '@modules/appointments/infra/http/controllers/providersController'
+import DayAvailableController from '@modules/appointments/infra/http/controllers/monthAvailableController'
+import MonthAvailableController from '@modules/appointments/infra/http/controllers/dayAvailableController'
 
 const providersRoutes = Router()
 const providersController = new ProvidersController()

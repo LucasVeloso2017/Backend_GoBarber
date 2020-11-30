@@ -23,9 +23,15 @@ class Appointment{
     @JoinColumn({name:'provider_id'})
     provider:user
 
+    @Column()
+    user_id: string
+
+    @ManyToOne(()=> user)
+    @JoinColumn({name:'user_id'})
+    user:user
+
     @Column('timestamp with time zone')
     date: Date
-
 
     @CreateDateColumn()
     created_at:Date

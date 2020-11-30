@@ -6,7 +6,7 @@ import User from '@modules/users/infra/typeorm/entities/user'
 import  IAppointmentsRepository  from '@modules/appointments/repositories/IAppointmentsRepository';
 
 interface Request{
-    user_id:string
+    provider_id:string
     month:number
     year:number
 
@@ -26,9 +26,9 @@ class ListMonthAvailable{
 
     ){}
     
-    public async execute({user_id,month,year}:Request): Promise<Response>{
+    public async execute({provider_id,month,year}:Request): Promise<Response>{
         const appoiments = await this.appoitmentsRepository.findAllInMonthFromProvider({
-            provider_id:user_id,
+            provider_id,
             year,
             month
         })

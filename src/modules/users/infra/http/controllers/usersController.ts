@@ -16,7 +16,7 @@ class UsersController{
             name,email,password
         })
     
-        delete user.password
+        //delete user.password
     
         return response.json(user)
     }
@@ -28,7 +28,7 @@ class UsersController{
             user_id:request.user.id,
             avatarFilename:request.file.filename
         })
-        delete user.password
+        //delete user.password
     
         return response.json(user)
     }

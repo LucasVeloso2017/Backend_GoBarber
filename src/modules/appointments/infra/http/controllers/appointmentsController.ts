@@ -12,7 +12,7 @@ class AppointmentsController {
 
         const {provider_id,date} = request.body
 
-        const parsedDate =parseISO(date)
+        const parsedDate = parseISO(date)
 
         const createAppointmentService = container.resolve(CreateAppointmentService)
 

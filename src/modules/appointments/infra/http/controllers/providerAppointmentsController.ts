@@ -11,7 +11,6 @@ class ProviderAppointmentsController {
 
         const { day,month,year } = request.body
 
-
         const listProviderAppointmentService = container.resolve(ListProviderAppointmentsService)
 
         const appointments = await listProviderAppointmentService.execute({

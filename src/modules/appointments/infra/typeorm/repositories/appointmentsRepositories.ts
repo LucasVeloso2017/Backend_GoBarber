@@ -45,20 +45,24 @@ class AppointmentstRepository implements IAppointmentRepository {
     }
 
     public async findAllInDayFromProvider({provider_id,day,month,year}:IFindAllInDayDto):Promise<Appointment[]>{
-        const parsedMonth = String(month).padStart(2,'0')
-        const parsedDay = String(day).padStart(2,'0')
+        const parsedDay = String(day).padStart(2, '0');
+        const parsedMonth = String(month).padStart(2, '0');
 
+        console.log(provider_id)
 
-        const appointment = await this.ormRepository.find({
-            where:{
-                provider_id,
-                date:Raw(dateFieldName => 
-                    `to_char(${dateFieldName},'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
+        const appointments = await this.ormRepository.find({
+            where: {
+                user_id:provider_id,
+                date: Raw(
+                    (dateFieldName)=>{
+                        console.log(dateFieldName)
+                        return `to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`
+                    }
                 ),
-            }
-        })
+            },
+        });
 
-        return appointment
+        return appointments;
     }
 }
 

@@ -19,13 +19,10 @@ class ListProviderAppointmentsService{
     constructor(
         @inject("AppointmentsRepository")
         private appoitmentsRepository:IAppointmentsRepository,
-
-        @inject("CacheProvider")
-        private cacheProvider:ICacheProvider,
-
     ){}
     
     public async execute({provider_id,day,month,year}:Request): Promise<Appointment[]>{
+
         const appointments = await this.appoitmentsRepository.findAllInDayFromProvider({
             provider_id,day,month,year
         })

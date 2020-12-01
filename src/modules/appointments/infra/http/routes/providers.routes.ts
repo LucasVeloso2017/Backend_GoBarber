@@ -15,6 +15,8 @@ const dayAvailableController = new DayAvailableController()
 providersRoutes.use(ensureAuth)
 providersRoutes.get('/',providersController.index)
 
+providersRoutes.delete('/:admin_id/delete-users/:provider_id',providersController.destroy)
+
 providersRoutes.get('/:provider_id/month-availability',celebrate({
     [Segments.PARAMS]:{
         provider_id:Joi.string().uuid().required()

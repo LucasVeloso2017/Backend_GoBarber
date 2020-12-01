@@ -8,10 +8,12 @@ import uploadConfig from '@config/upload'
 import ensureAuth from '@modules/users/infra/http/middlewares/ensureAuth'
 import UsersController from '@modules/users/infra/http/controllers/usersController'
 import UserAvatarController from '@modules/users/infra/http/controllers/userAvatarController'
+import UserAdminController from '@modules/users/infra/http/controllers/usersAdminController'
 
 
 const usersController = new UsersController()
 const userAvatarController = new UserAvatarController()
+const userAdminController = new UserAdminController()
 
 const usersRouter = Router()
 const upload = multer(uploadConfig)
@@ -25,5 +27,7 @@ usersRouter.post('/',celebrate({
     }
 })
 ,usersController.create)
+
+usersRouter.post('/admin',userAdminController.create)
 
 export default usersRouter

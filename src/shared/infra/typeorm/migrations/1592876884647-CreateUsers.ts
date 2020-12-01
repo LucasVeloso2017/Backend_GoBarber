@@ -28,6 +28,12 @@ export default class CreateUsers1592876884647 implements MigrationInterface {
                         name:'password',
                         type:'varchar'
                     },
+                    //new add - 01/12/2020 - column for admin user
+                    {
+                        name:'admin',
+                        type:'boolean'
+                    },
+                    //------------
                     {
                         name:'created_at',
                         type:'timestamp',

@@ -22,8 +22,8 @@ class UsersRepository implements IUserRepository {
         return user
     }
 
-    public async create({name,email,password}:ICreateUserDto):Promise<User>{
-        const user = this.ormRepository.create({name,email,password})
+    public async create({name,email,password,admin}:ICreateUserDto):Promise<User>{
+        const user = this.ormRepository.create({name,email,password,admin})
         
         await this.ormRepository.save(user)
 

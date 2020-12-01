@@ -21,6 +21,11 @@ class User{
     @Column()
     avatar: string
 
+    //new add - 01/12/2020 - column for admin user
+    @Column({default:false})
+    admin: boolean
+    //----------------
+
     @CreateDateColumn()
     created_at:Date
 

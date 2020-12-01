@@ -9,12 +9,12 @@ import User from '@modules/users/infra/typeorm/entities/user'
 interface Request{
     name:string,
     email:string,
-    admin:boolean,
-    password:string
+    password:string,
+    admin:boolean
 }
 
 @injectable()
-class CreateUserService{
+class CreateUserAdminService{
     
     constructor(
         @inject("UsersRepository")
@@ -38,8 +38,8 @@ class CreateUserService{
 
         const user = this.userRepository.create({
             name,
-            email,
             admin,
+            email,
             password:hashedPassword
         })
         
@@ -49,4 +49,4 @@ class CreateUserService{
 
 }
 
-export default CreateUserService
+export default CreateUserAdminService

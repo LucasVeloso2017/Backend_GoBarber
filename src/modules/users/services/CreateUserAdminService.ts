@@ -11,6 +11,7 @@ interface Request{
     email:string,
     password:string,
     admin:boolean
+    costumer:boolean
 }
 
 @injectable()
@@ -25,7 +26,7 @@ class CreateUserAdminService{
         private hashProvider:IHashProvider,
     ){}
     
-    public async execute({name,email,password,admin}:Request): Promise<User>{
+    public async execute({name,email,password,admin,costumer}:Request): Promise<User>{
 
         const checkUserExists = await this.userRepository.findByEmail(email) 
         
@@ -39,6 +40,7 @@ class CreateUserAdminService{
         const user = this.userRepository.create({
             name,
             admin,
+            costumer,
             email,
             password:hashedPassword
         })

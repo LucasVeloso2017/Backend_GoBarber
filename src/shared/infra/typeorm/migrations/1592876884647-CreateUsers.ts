@@ -34,6 +34,12 @@ export default class CreateUsers1592876884647 implements MigrationInterface {
                         type:'boolean'
                     },
                     //------------
+                    //new add - 02/12/2020 - column for costumer user
+                    {
+                        name:'costumer',
+                        type:'boolean'
+                    },
+                    //------------
                     {
                         name:'created_at',
                         type:'timestamp',

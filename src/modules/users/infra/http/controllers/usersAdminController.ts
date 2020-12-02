@@ -13,7 +13,7 @@ class UsersAdminController{
         const createUser = container.resolve(CreateUserAdminService)
     
         const user = await createUser.execute({
-            name,email,password,admin
+            name,email,password,admin,costumer:false
         })
     
         //delete user.password

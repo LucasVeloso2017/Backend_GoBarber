@@ -15,7 +15,7 @@ interface Request{
 }
 
 @injectable()
-class CreateUserService{
+class CreateUserCostumerService{
     
     constructor(
         @inject("UsersRepository")
@@ -51,4 +51,4 @@ class CreateUserService{
 
 }
 
-export default CreateUserService
+export default CreateUserCostumerService

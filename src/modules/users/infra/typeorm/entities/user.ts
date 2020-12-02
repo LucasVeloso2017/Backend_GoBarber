@@ -26,6 +26,11 @@ class User{
     admin: boolean
     //----------------
 
+    //new add - 02/12/2020 - column for costumer user
+    @Column({default:false})
+    costumer: boolean
+    //----------------
+
     @CreateDateColumn()
     created_at:Date
 

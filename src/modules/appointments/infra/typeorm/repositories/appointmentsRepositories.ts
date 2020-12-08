@@ -27,7 +27,7 @@ class AppointmentstRepository implements IAppointmentRepository {
         const appointment = this.ormRepository.create({provider_id,user_id,date})
         await this.ormRepository.save(appointment)
         return appointment
-    }
+    } 
 
     public async findAllInMonthFromProvider({provider_id,month,year}:IFindAllInMonthDto):Promise<Appointment[]>{
         const parsedMonth = String(month).padStart(2,'0')

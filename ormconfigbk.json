@@ -1,19 +1,19 @@
 [
     {
         "type":"postgres",
-        "host":"ec2-3-89-230-115.compute-1.amazonaws.com",
+        "host":"localhost",
         "port":5432,
-        "username":"rfdcstydhxnjxz",
-        "password":"34e867120817265e4c8c653e538738f522728e581f9210d92232dc50dc35c562",
-        "database":"dda03u5ia638u1",
+        "username":"postgres",
+        "password":"docker",
+        "database":"gostack_gobarber",
         "entities":[
-            "./dist/modules/**/infra/typeorm/entities/*.ts"
+            "./src/modules/**/infra/typeorm/entities/*.ts"
         ],
         "migrations":[
-            "./dist/shared/infra/typeorm/migrations/*.ts"
+            "./src/shared/infra/typeorm/migrations/*.ts"
         ],
         "cli":{
-            "migrationsDir":"./dist/shared/infra/typeorm/migrations"
+            "migrationsDir":"./src/shared/infra/typeorm/migrations"
         } 
     },
     {
